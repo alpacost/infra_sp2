@@ -7,6 +7,7 @@
 Добавлять отзывы, комментарии и ставить оценки могут только аутентифицированные пользователи.
 
 ## Шаблон наполнения .env
+.env следует хранить по пути **../infra_sp2/infra/.env**
 ~~~
 DB_ENGINE= указываем название базы данных
 DB_NAME= имя базы данных
@@ -16,19 +17,23 @@ DB_HOST= название сервиса (контейнера)
 DB_PORT= порт для подключения к БД
 ~~~
 
-## Основные комманды docker
+## Начало работы 
 **Запустить проект**
 
-    docker-compose up
+    ../infra-sp2/infra/docker-compose up
+**Создать суперпользователя**
+
+    ../docker-compose exec web python manage.py createsuperuser     
+## Другие комманды docker 
 **Остановить проект**
 
-    docker-compose down
+    ../infra-sp2/infra/docker-compose down
 **Октрыть логи сервиса**
 
-    docker-compose logs -f [название сервиса]
+    ../infra-sp2/infra/docker-compose logs -f [название сервиса]
    **Вывести список контейнеров**
    
-    docker-compose ps
+    ../infra-sp2/infra/docker-compose ps
    
    ## Заполнение базы данных
    Данные для тестовой базы данных должны быть расположены в каталоге
@@ -47,12 +52,23 @@ static/data/
 
 Для импорта каждого источника подготовалена менеджмент команда:
 ```python
-python manage.py import_from_csv_{имя источника}
+../docker-compose exec web python manage.py import_from_csv_{имя источника}
 ```
+**Выполнять для импорта тествоой бд**
 
-Пример:
-```python
-python manage.py import_from_csv_users
-```
+    ../docker-compose exec web python manage.py import_from_csv_users
+
+    ../docker-compose exec web python manage.py import_from_csv_genre
+    
+    ../docker-compose exec web python manage.py import_from_csv_category
+    
+    ../docker-compose exec web python manage.py import_from_csv_titles
+    
+    ../docker-compose exec web python manage.py import_from_csv_genre_title
+    
+    ../docker-compose exec web python manage.py import_from_csv_review
+    
+    ../docker-compose exec web python manage.py import_from_csv_comments
+    
 
 Комманды следует выполнять в порядке, перечисленом выше
