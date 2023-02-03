@@ -7,9 +7,13 @@
 Добавлять отзывы, комментарии и ставить оценки могут только аутентифицированные пользователи.
 
 ## Начало работы 
-**Создать файл .env**
-.env следует хранить по пути **../infra_sp2/infra/.env**
-**Шаблон заполнения**
+**Переход в папку с docker-compose**
+
+    cd infra/
+**Создать .env**
+
+    touch .env
+**Шаблон заполнения .env**
 ~~~
 DB_ENGINE= указываем название базы данных
 DB_NAME= имя базы данных
@@ -21,18 +25,18 @@ DB_PORT= порт для подключения к БД
 
 **Собрать и запустить проект**
 
-    ../infra-sp2/infra/docker-compose up -d --build
+    docker-compose up -d --build
 
 **Провести миграции**
 
-    ../docker-compose exec web python manage.py migrate    
+    docker-compose exec web python manage.py migrate    
 **Создать суперпользователя**
 
-    ../docker-compose exec web python manage.py createsuperuser 
+    docker-compose exec web python manage.py createsuperuser 
     
 **Собрать статику**
 
-    ../docker-compose exec web python manage.py collectstatic --no-input 
+    docker-compose exec web python manage.py collectstatic --no-input 
     
 **Доступ к админке**
 
@@ -85,4 +89,3 @@ static/data/
     
 
 Комманды следует выполнять в порядке, перечисленом выше
-
