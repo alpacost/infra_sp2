@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.shortcuts import get_object_or_404
 from reviews.models import Genre, Title
 
-FILE_PATH = '.genre_title.csv'
+FILE_PATH = 'static/data/genre_title.csv'
 FILE_NAME = FILE_PATH.split('/')[2]
 
 
@@ -16,9 +16,12 @@ class Command(BaseCommand):
             reader = csv.DictReader(file)
 
             for row in reader:
-                print(row)
-                title = get_object_or_404(Title, id=row['title_id'])
-                genre = get_object_or_404(Genre, id=row['genre_id'])
+                try:
+                    print(row)
+                    title = get_object_or_404(Title, id=row['title_id'])
+                    genre = get_object_or_404(Genre, id=row['genre_id'])
+                except Exception:
+                    continue
 
                 title.save()
                 title.genre.add(genre)
