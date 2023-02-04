@@ -44,13 +44,13 @@ DB_PORT= порт для подключения к БД
 ## Другие комманды docker 
 **Остановить проект**
 
-    ../infra-sp2/infra/docker-compose down
+    docker-compose down
 **Октрыть логи сервиса**
 
-    ../infra-sp2/infra/docker-compose logs -f [название сервиса]
+    docker-compose logs -f [название сервиса]
    **Вывести список контейнеров**
    
-    ../infra-sp2/infra/docker-compose ps
+    docker-compose ps
    
    ## Заполнение базы данных
    Данные для тестовой базы данных должны быть расположены в каталоге
@@ -69,23 +69,23 @@ static/data/
 
 Для импорта каждого источника подготовалена менеджмент команда:
 ```python
-../docker-compose exec web python manage.py import_from_csv_{имя источника}
+docker-compose exec web python manage.py import_from_csv_{имя источника}
 ```
 **Выполнять для импорта тествоой бд**
 
-    ../docker-compose exec web python manage.py import_from_csv_users
+    docker-compose exec web python manage.py import_from_csv_users
 
-    ../docker-compose exec web python manage.py import_from_csv_genre
+    docker-compose exec web python manage.py import_from_csv_genre
     
-    ../docker-compose exec web python manage.py import_from_csv_category
+    docker-compose exec web python manage.py import_from_csv_category
     
-    ../docker-compose exec web python manage.py import_from_csv_titles
+    docker-compose exec web python manage.py import_from_csv_titles
     
-    ../docker-compose exec web python manage.py import_from_csv_genre_title
+    docker-compose exec web python manage.py import_from_csv_genre_title
     
-    ../docker-compose exec web python manage.py import_from_csv_review
+    docker-compose exec web python manage.py import_from_csv_review
     
-    ../docker-compose exec web python manage.py import_from_csv_comments
+    docker-compose exec web python manage.py import_from_csv_comments
     
 
 Комманды следует выполнять в порядке, перечисленом выше
